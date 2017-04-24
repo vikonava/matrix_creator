@@ -1,0 +1,26 @@
+matrix:
+  ip: '127.0.0.1'
+  port_offset:
+    base: 0
+    error: 1
+    keep_alive: 2
+    data: 3
+  devices:
+    imu:
+      port: 20013
+    humidity:
+      port: 20017
+    everloop:
+      port: 20021
+    pressure:
+      port: 20025
+    uv:
+      port: 20029
+    zigbee_bulb:
+      port: 20033
+    microphone:
+      port: 20037  
+    lirc:
+      port: 20041
+    vision:
+      port: 22013

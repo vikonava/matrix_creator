@@ -1,0 +1,8 @@
+--no-private 
+--protected
+--exclude lib/protos/*
+lib/**/*.rb
+-
+CODE_OF_CONDUCT.md
+LICENSE.txt
+README.md
