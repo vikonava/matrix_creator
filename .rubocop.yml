@@ -1,0 +1,21 @@
+AllCops:
+  Exclude:
+    - lib/protos/**/*.rb
+    - spec/**/*.rb
+
+# Customize rules
+MethodLength:
+  Max: 35
+
+BlockLength:
+  Max: 35
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/ClassVars:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 90
+  IgnoredPatterns: ['#.*']
