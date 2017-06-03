@@ -41,7 +41,13 @@ module MatrixCreator
     #   ]
     #   MatrixCreator::Vision.detect_objects(objects, max_secs: 30)
     #
-    def self.detect_objects(objects, options = {})
+    # @example Detect face for 10 seconds and process data on each occurance when received
+    #   objects = [MatrixMalos::EnumMalosEyeDetectionType::FACE]
+    #   MatrixCreator::Vision.detect_objects(objects, max_secs: 10) { |data|
+    #     // Do something with data
+    #   }
+    #
+    def self.detect_objects(objects, options = {}, &block)
       @vision_comm = MatrixCreator::Comm.new(BASE_PORT)
 
       # Setup MalosEye configuration
@@ -72,7 +78,7 @@ module MatrixCreator
       @vision_comm.send_configuration(config)
 
       # Query Demographics
-      result = @vision_comm.perform(AdmobilizeVision::VisionResult, options)
+      result = @vision_comm.perform(AdmobilizeVision::VisionResult, options, block)
 
       # Stop capturing events
       malos_eye_config = MatrixMalos::MalosEyeConfig.new

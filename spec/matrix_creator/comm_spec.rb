@@ -370,7 +370,7 @@ RSpec.describe MatrixCreator::Comm do
       @comm_instance.perform(decoder)
     end
 
-    it 'starts data thread with corresponding params' do
+    it 'starts data thread with corresponding params and a block of code' do
       expect(@comm_instance).to receive(:start_data_listener).with(decoder, 10, error_thread, anything)
       expect(error_thread).to receive(:join)
 

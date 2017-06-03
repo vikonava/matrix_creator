@@ -214,7 +214,7 @@ module MatrixCreator
     # @param options [Hash] contains the options that can be specified for a max_resp and/or max_secs
     # @yield callback used to process data received from the driver
     # @return an array with a list of all the messages received
-    def perform(decoder, options = {}, &block)
+    def perform(decoder, options = {}, block = nil)
       # Start running threads
       error_thread = start_error_listener
       data_thread = start_data_listener(decoder, options[:max_resp], error_thread, block)
