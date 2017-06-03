@@ -51,7 +51,7 @@ RSpec.describe MatrixCreator::Vision do
     it 'retrieves data detected from the vision comm instance' do
       stub_const('AdmobilizeVision::VisionResult', vision_result)
 
-      expect(comm_instance).to receive(:perform).with(vision_result, {})
+      expect(comm_instance).to receive(:perform).with(vision_result, {}, nil)
       
       MatrixCreator::Vision.detect_objects(objects)
     end
@@ -59,7 +59,7 @@ RSpec.describe MatrixCreator::Vision do
     it 'retrieves data detected with max seconds limit' do
       stub_const('AdmobilizeVision::VisionResult', vision_result)
 
-      expect(comm_instance).to receive(:perform).with(vision_result, max_secs: 10)
+      expect(comm_instance).to receive(:perform).with(vision_result, { max_secs: 10 }, nil)
       
       MatrixCreator::Vision.detect_objects(objects, max_secs: 10)
     end
@@ -67,7 +67,7 @@ RSpec.describe MatrixCreator::Vision do
     it 'retrieves data detected with max responses limit' do
       stub_const('AdmobilizeVision::VisionResult', vision_result)
 
-      expect(comm_instance).to receive(:perform).with(vision_result, max_resp: 10)
+      expect(comm_instance).to receive(:perform).with(vision_result, { max_resp: 10 }, nil)
       
       MatrixCreator::Vision.detect_objects(objects, max_resp: 10)
     end
@@ -75,9 +75,17 @@ RSpec.describe MatrixCreator::Vision do
     it 'retrieves data detected with max seconds and max responses limit' do
       stub_const('AdmobilizeVision::VisionResult', vision_result)
 
-      expect(comm_instance).to receive(:perform).with(vision_result, max_secs: 30, max_resp: 10)
+      expect(comm_instance).to receive(:perform).with(vision_result, { max_secs: 30, max_resp: 10 }, nil)
       
       MatrixCreator::Vision.detect_objects(objects, max_secs: 30, max_resp: 10)
+    end
+
+    it 'retrieves data detected and sends a callback method for data processing' do
+      stub_const('AdmobilizeVision::VisionResult', vision_result)
+
+      expect(comm_instance).to receive(:perform).with(vision_result, { max_secs: 30, max_resp: 10 }, anything)
+
+      MatrixCreator::Vision.detect_objects(objects, max_secs: 30, max_resp: 10){ puts 'test' }
     end
 
     it 'stops capturing events when enough data has been received by the driver' do
