@@ -22,3 +22,4 @@ end
 
 require 'matrix_creator/everloop'
 require 'matrix_creator/vision'
+require 'matrix_creator/imu'
