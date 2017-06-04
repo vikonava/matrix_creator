@@ -23,3 +23,6 @@ end
 require 'matrix_creator/everloop'
 require 'matrix_creator/vision'
 require 'matrix_creator/imu'
+require 'matrix_creator/humidity'
+require 'matrix_creator/pressure'
+require 'matrix_creator/uv'
